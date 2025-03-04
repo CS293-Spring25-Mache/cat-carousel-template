@@ -37,8 +37,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Apache configuration
 RUN a2enmod rewrite
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# Create startup script to ensure Apache starts
+COPY start-apache.sh /usr/local/bin/start-apache.sh
+RUN chmod +x /usr/local/bin/start-apache.sh
 
-# Expose port 80
-EXPOSE 80
+# Default command
+CMD ["/usr/local/bin/start-apache.sh"]
