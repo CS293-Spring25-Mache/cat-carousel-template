@@ -1,0 +1,30 @@
+{
+    "name": "PHP 8.2 Codespaces Development Container",
+    "image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/php:1": {
+            "version": "8.2",
+            "extensions": [
+                "mysqli",
+                "pdo",
+                "pdo_mysql",
+                "intl",
+                "zip",
+                "xdebug"
+            ]
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        }
+    },
+    "postCreateCommand": "php -r 'echo \"PHP version: \".phpversion();'",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug",
+                "eazyne.php-cs-fixer"
+            ]
+        }
+    }
+}
