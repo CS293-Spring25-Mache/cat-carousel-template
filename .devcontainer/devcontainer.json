@@ -1,23 +1,9 @@
 {
-    "name": "PHP 8.2 Codespaces Development Container",
-    "image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
-    "features": {
-        "ghcr.io/devcontainers/features/php:1": {
-            "version": "8.2",
-            "extensions": [
-                "mysqli",
-                "pdo",
-                "pdo_mysql",
-                "intl",
-                "zip",
-                "xdebug"
-            ]
-        },
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "lts"
-        }
+    "name": "PHP 8.2 Development Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
     },
-    "postCreateCommand": "php -r 'echo \"PHP version: \".phpversion();'",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -26,5 +12,7 @@
                 "eazyne.php-cs-fixer"
             ]
         }
-    }
+    },
+    "forwardPorts": [80],
+    "postCreateCommand": "php -v && composer --version"
 }
