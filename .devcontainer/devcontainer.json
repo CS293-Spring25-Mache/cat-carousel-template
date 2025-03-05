@@ -1,12 +1,12 @@
 {
     "name": "PHP 8.2 with Apache",
     "image": "mcr.microsoft.com/devcontainers/php:8.2-apache",
-    "postCreateCommand": "composer install",
     "forwardPorts": [80],
     "mounts": [
-      "source=${localWorkspaceFolder},target=/var/www/html,type=bind,consistency=cached"
+      "source=${localWorkspaceFolder},target=/var/www/html,type=bind"
     ],
-    "features": {},
+    "initializeCommand": "sudo service apache2 start",
+    "postCreateCommand": "composer install || true",
     "customizations": {
       "vscode": {
         "extensions": [

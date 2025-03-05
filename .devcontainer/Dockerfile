@@ -1,45 +1,8 @@
-FROM php:8.2-apache
+# Use the existing PHP 8.2 with Apache image
+FROM mcr.microsoft.com/devcontainers/php:8.2-apache
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Install system dependencies
+# Install any extra system packages
 RUN apt-get update && apt-get install -y \
+    nano \
     git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    libzip-dev
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install \
-    pdo_mysql \
-    mysqli \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    zip
-
-# Install Xdebug
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Apache configuration
-RUN a2enmod rewrite
-
-# Create startup script to ensure Apache starts
-COPY start-apache.sh /usr/local/bin/start-apache.sh
-RUN chmod +x /usr/local/bin/start-apache.sh
-
-# Default command
-CMD ["/usr/local/bin/start-apache.sh"]
+    && rm -rf /var/lib/apt/lists/*
