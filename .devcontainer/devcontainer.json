@@ -1,18 +1,19 @@
 {
-    "name": "PHP 8.2 Development Container",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "bmewburn.vscode-intelephense-client",
-                "xdebug.php-debug",
-                "eazyne.php-cs-fixer"
-            ]
-        }
-    },
+    "name": "PHP 8.2 with Apache",
+    "image": "mcr.microsoft.com/devcontainers/php:8.2-apache",
+    "postCreateCommand": "composer install",
     "forwardPorts": [80],
-    "postCreateCommand": "php -v && composer --version"
-}
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/var/www/html,type=bind,consistency=cached"
+    ],
+    "features": {},
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "felixfbecker.php-debug",
+          "bmewburn.vscode-intelephense-client"
+        ]
+      }
+    }
+  }
+  
