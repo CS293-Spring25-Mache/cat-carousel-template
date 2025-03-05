@@ -1,19 +1,11 @@
 {
-    "name": "PHP 8.2 with Apache",
-    "image": "mcr.microsoft.com/devcontainers/php:8.2-apache",
-    "forwardPorts": [80],
-    "mounts": [
-      "source=${localWorkspaceFolder},target=/var/www/html,type=bind"
+    "name": "devcontainer-example",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "development",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "felixfbecker.php-pack",
+        "cweijan.vscode-mysql-client2"
     ],
-    "initializeCommand": "sudo service apache2 start",
-    "postCreateCommand": "composer install || true",
-    "customizations": {
-      "vscode": {
-        "extensions": [
-          "felixfbecker.php-debug",
-          "bmewburn.vscode-intelephense-client"
-        ]
-      }
-    }
-  }
-  
+    "appPort": [9080]
+}
